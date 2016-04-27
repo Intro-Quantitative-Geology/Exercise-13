@@ -60,7 +60,7 @@ In mathematical terms, this relationship is
 
 Thus, we will track a parcel of rock from some depth in the model at time *t*=0 to the surface when the simulation is complete at 0 Ma.
 At each depth position, the temperature of the parcel of rock will be recorded, which will allow the thermal history of the rock parcel to be used to predict different thermochronometer ages.
-We will consider the apatite (U-Th)/He, zircon (U-Th)/He and muscovite <sup40</sup>Ar/<sup>39</sup>Ar thermochronometers that were presented briefly in lecture.
+We will consider the apatite (U-Th)/He, zircon (U-Th)/He and muscovite <sup>40</sup>Ar/<sup>39</sup>Ar thermochronometers that were presented briefly in lecture.
 
 Thermochronometer closure temperatures will be predicted using Dodson's method, which was also discussed briefly in lecture.
 According to Dodson's method, the closure temperature *T*<sub>c</sub> of a thermochronometer is
