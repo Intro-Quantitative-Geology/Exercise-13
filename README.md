@@ -25,7 +25,7 @@ We will begin by plotting geotherms to get a sense of how our temperature equati
 1. If you [download a copy of the Python script `age_predict_1D.py`](age_predict_1D.py) you should be able to run it without making any changes to produce a plot like that shown below.
 
     ![Time-dependent heat transfer with advection](Images/1D_transient_plot1.png)<br/>
-    *Figure 1. 1D transient thermal solution including advection.*
+    *Figure 1. 1D transient thermal solution including advection.*<br/><br/>
 To start, please add axis labels and a title to this plot. What is the advection velocity for this thermal solution? Add a text label listing the advection velocity on your the plot using the text() function, then save a copy of the plot for your write-up.
 2. How does the thermal solution change when you alter the advection velocity? Increase the advection velocity to 1.0 mm/a and save the resulting plot for your write-up. Do the same thing for an advection velocity of 0.1 mm/a. What is the effect of changing the advection velocity on temperatures in the shallow crust (<10 km depth)?
 3. Reset the advection velocity to the starting value. Now increase the total simulation time to 100 Ma. Once again, save a copy of this plot for your write-up. What happens to temperatures in the model as the simulation time increases? You might want to run some additional calculations (you don't need to save the plots) with even longer simulation times (1000 Ma, 5000 Ma, etc.). What do you observe for the temperatures in the model? Are there any potential problems with these temperatures? Does the model approach a steady-state thermally?
