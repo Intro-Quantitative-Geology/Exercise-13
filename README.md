@@ -102,9 +102,9 @@ Save a copy of this plot and insert it at the end of this document.
 ## What to submit
 **For this exercise, your modifications to the end of this document should include**
 
-1. Inserting the 7 plots requested for problem 1 and the 4 plots requested for problem 2.
-2. Adding figure captions for each plot describing the plot as if it were in a scientific journal article.
-3. Providing answers to all of the questions in bold
+1. The 7 plots requested for problem 1 and the 4 plots requested for problem 2.
+2. Figure captions for each plot describing the plot as if it were in a scientific journal article.
+3. Answers to all of the questions in bold
 4. Copies of your modified Python scripts for Problems 1 and 2
 
 **NOTE**: You may want to reference these plots in your final report on these exercises, so be sure to keep the copies of the plot files.
