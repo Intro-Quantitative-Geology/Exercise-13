@@ -26,10 +26,64 @@ We will begin by plotting geotherms to get a sense of how our temperature equati
 
     ![Time-dependent heat transfer with advection](Images/1D_transient_plot1.png)<br/>
     *Figure 1. 1D transient thermal solution including advection.*<br/><br/>
-To start, please add axis labels and a title to this plot. What is the advection velocity for this thermal solution? Add a text label listing the advection velocity on your the plot using the text() function, then save a copy of the plot for your write-up.
-2. How does the thermal solution change when you alter the advection velocity? Increase the advection velocity to 1.0 mm/a and save the resulting plot for your write-up. Do the same thing for an advection velocity of 0.1 mm/a. What is the effect of changing the advection velocity on temperatures in the shallow crust (<10 km depth)?
-3. Reset the advection velocity to the starting value. Now increase the total simulation time to 100 Ma. Once again, save a copy of this plot for your write-up. What happens to temperatures in the model as the simulation time increases? You might want to run some additional calculations (you don't need to save the plots) with even longer simulation times (1000 Ma, 5000 Ma, etc.). What do you observe for the temperatures in the model? Are there any potential problems with these temperatures? Does the model approach a steady-state thermally?
-4. Reset the simulation time to 50 Ma. Now we'll explore the effect of the initial thermal gradient. Increase the initial thermal gradient to 20°C/km, run the model and save the plot. Do the same for a thermal gradient of 5°C/km. How does the thermal gradient affect the temperatures in the model? Is there any clear relationship between the initial thermal gradient and the maximum temperature in the model at t = 0 Ma?
-5. Lastly, reset the initial thermal gradient to 10°C/km. Increase the number of temperature calculations to plot from 1 to 5 and run the thermal model. Save this plot for your write-up. Is it helpful to see the temperature calculations at different times?
+To start, please add axis labels and a title to this plot. **What is the advection velocity for this thermal solution?** Add a text label listing the advection velocity on your the plot using the `plt.text()` function, then save a copy of the plot at the end of this document.
+2. **How does the thermal solution change when you alter the advection velocity?** Increase the advection velocity to 1.0 mm/a and save the resulting plot at the end of this document. Do the same thing for an advection velocity of 0.1 mm/a. **What is the effect of changing the advection velocity on temperatures in the shallow crust (<10 km depth)?**
+3. Reset the advection velocity to the starting value. Now increase the total simulation time to 100 Ma. Once again, save a copy of this plot at the end of this document. **What happens to temperatures in the model as the simulation time increases?** You might want to run some additional calculations (you don't need to save the plots) with even longer simulation times (1000 Ma, 5000 Ma, etc.). **What do you observe for the temperatures in the model? Are there any potential problems with these temperatures? Does the model approach a steady-state thermally?**
+4. Reset the simulation time to 50 Ma. Now we'll explore the effect of the initial thermal gradient. Increase the initial thermal gradient to 20°C/km, run the model and save the plot. Do the same for a thermal gradient of 5°C/km. **How does the thermal gradient affect the temperatures in the model? Is there any clear relationship between the initial thermal gradient and the maximum temperature in the model at *t* = 0 Ma?**
+5. Lastly, reset the initial thermal gradient to 10°C/km. Increase the number of temperature calculations to plot from 1 to 5 and run the thermal model. Save this plot and insert it at the end of this document. **In your opinion, is it helpful to see the temperature calculations at different times?**
+
+## Predicting thermochronometer ages
+Thermochronometers record the time since a rock or mineral was at a given temperature (closure temperature) in the Earth.
+Above, we have calculated temperature solutions assuming 1-D vertical advection of rock.
+Here, we will track rocks through the thermal field with time and use their recorded thermal history to predict thermochronometer ages.
+The key to understanding what is done here is to understand that we will be simulating the position of a parcel of rock at depth in the earth, and at each time step the position of the rock parcel will be moved upward according to the length of the time step multiplied by the advection velocity.
+In mathematical terms, this relationship is
+
+![Equation 3](Images/Equation3.png)<br/> *Equation 3. Equation for calculating rock particle depth as a function of time.*
+
+Thus, we will track a parcel of rock from some depth in the model at time *t*=0 to the surface when the simulation is complete at 0 Ma.
+At each depth position, the temperature of the parcel of rock will be recorded, which will allow the thermal history of the rock parcel to be used to predict different thermochronometer ages.
+We will consider the apatite (U-Th)/He, zircon (U-Th)/He and muscovite <sup40</sup>Ar/<sup>39</sup>Ar thermochronometers that were presented briefly in lecture.
+
+Thermochronometer closure temperatures will be predicted using Dodson's method, which was also discussed briefly in lecture.
+According to Dodson's method, the closure temperature *T*<sub>c</sub> of a thermochronometer is
+
+![Equation 4](Images/Equation4.png)<br/> *Equation 4. The effective closure temperature according to Dodson's method.*
+
+where *E*<sub>a</sub> is the activation energy, *R* is the universal gas constant, *A* is a geometric factor (*A* = 25 for a sphere, *A* = 8.7 for a planar sheet), *τ* is time for the diffusivity to decrease by a factor of 1/e, *D*<sub>0</sub> is the diffusivity at infinite temperature and *a* is the diffusion domain (we'll assume this is the size of the mineral). The value of *τ* can be calculated as a function of the cooling rate *dT*/*dt*
+
+![Equation 5](Images/Equation5.png)<br/> *Equation 5. The characteristic time for a change in diffusivity.*
+
+By simulating cooling of the minerals by iterating over the values of the recorded temperature history from depth to the surface, thermochronometer ages can be predicted for various systems.
+
+## Problem 2 - Cooling ages and their relationship to exhumation rate
+One of the main interests for scientists using thermochronology is to determine the exhumation rate of a study area based on the ages of thermochronometer data at the surface.
+
+1. At the top of the Python script [`age_predict_1D.py`](age_predict_1D.py), there are three flags (`True`/`False` variables) that allow you to enable the calculation of different thermochronometers.
+Set the value for `calc_AHe` to `True` to enable prediction of apatite (U-Th)/He ages and run the model with the default parameters.
+**What is the predicted apatite (U-Th)/He age?**
+**What does this age mean?**
+**What is the closure temperature for the model in this case?**
+If you look carefully through the code, you can find where the closure temperature is calculated.
+Add text to your plot to display the predicted apatite (U-Th)/He age and predicted closure temperature using the `plt.text()` function.
+I suggest that you add the text functions at the bottom of the script where the predicted apatite (U-Th)/He age is written to the screen (if requested).
+Save a copy of the plot and insert it at the end of this document.
+2. Similar to above, set the flags for `calc_ZHe` and `calc_MAr` to `True` and add the corresponding `plt.text()` functions to display the predicted zircon (U-Th)/He and muscovite <sup>40</sup>Ar/<sup>39</sup>Ar ages and their predicted closure temperatures.
+As above, I suggest that you add the text functions at the bottom of the script where the predicted apatite (U-Th)/He age is written to the screen (if requested).
+Save a copy of the plot and insert it at the end of this document.
+**Do all of the predicted thermochronometer ages make sense?**
+3. To understand more about how the thermochronometer ages are predicted, it can he helpful to look at the temperature-depth history of the parcel of rock as it travels from depth to the surface.
+You can see this history visually by setting the flag `plot_Tzhist` to `True` at the top of the Python script.
+This will add a set of symbols to the plot that display how the temperature and depth of the rock parcel changes with time.
+**Considering the predicted thermochronometer ages and closure temperatures, do you see any problems with the predicted ages now?**
+Save a copy of this plot and insert it at the end of this document.
+4. Finally, increase the advection velocity in the thermal model to 1.0 mm/a and produce a similar plot to above.
+**Do the predicted thermochronometer ages make more sense now?**
+**What was the problem in questions 2 and 3?**
+Save a copy of this plot and insert it at the end of this document.
+
+
+For each of the points above, include the requested plots with a short figure caption in your write-up, along with answers to any of the listed questions. You may want to reference these plots in your final report on these exercises, so be sure to keep the copies of the plot files.
+
 
 For each of the points above, include the requested plots with a short figure caption in your write-up, along with answers to any of the listed questions. You may want to reference these plots in your final report on these exercises, so be sure to keep the copies of the plot files.
