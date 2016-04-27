@@ -7,6 +7,23 @@ This two-part set of exercises is designed to give you a better understanding of
 Thermochronology combines many aspects of what has been studied in this course, including the advection and diffusion equations, tectonic and surface (erosional) processes and some basic geostatistics.
 The first part of the laboratory exercises on thermochronology is intended to provide an understanding of heat advection and diffusion in the Earth's crust, the time-dependence of thermal processes, and how a thermal history can be used to predict thermochronometer ages.
 
+## Getting started
+1. You can start by making a folder to store files for this week's exercises in a Terminal.
+
+    ```bash
+    $ cd Desktop
+    $ mkdir Lab-6
+    $ cd Lab-6
+    ```
+**Reminder**: the `$` symbol above represents the command prompt in the Terminal window.
+2. Now you can open **Spyder**.
+
+    ```bash
+    $ spyder
+    ```
+
+Now we are ready to start.
+
 ## Time-dependent temperature in the Earth
 In this exercise we will use an analytical solution to the 1-D time-dependent thermal advection-diffusion equation to simulate erosion of rock at the Earth's surface, the upward transport of the underlying rock toward the surface and the changes in a 1-D geotherm with time.
 The basic equation for temperature *T* as a function of depth *z* and time *t* was originally published by Carslaw and Jaeger (1959)
@@ -82,8 +99,24 @@ Save a copy of this plot and insert it at the end of this document.
 **What was the problem in questions 2 and 3?**
 Save a copy of this plot and insert it at the end of this document.
 
+## What to submit
+**For this exercise, your modifications to the end of this document should include**
 
-For each of the points above, include the requested plots with a short figure caption in your write-up, along with answers to any of the listed questions. You may want to reference these plots in your final report on these exercises, so be sure to keep the copies of the plot files.
+1. Inserting the 7 plots requested for problem 1 and the 4 plots requested for problem 2.
+2. Adding figure captions for each plot describing the plot as if it were in a scientific journal article.
+3. Providing answers to all of the questions in bold
+4. Copies of your modified Python scripts for Problems 1 and 2
 
+**NOTE**: You may want to reference these plots in your final report on these exercises, so be sure to keep the copies of the plot files.
 
-For each of the points above, include the requested plots with a short figure caption in your write-up, along with answers to any of the listed questions. You may want to reference these plots in your final report on these exercises, so be sure to keep the copies of the plot files.
+## References
+Carslaw, H. S., & Jaeger, J. C. (1959). Conduction of heat in solids. Oxford: Clarendon Press.
+
+Dodson, M. H. (1973). Closure temperature in cooling geochronological and petrological systems. Contributions to Mineralogy and Petrology, 40(3), 259–274.
+
+# Answers
+## Problem 1
+This is some text. You can use *italics* or **bold** text easily. You may want to read a bit more about [formatting text in Github-flavored Markdown](https://help.github.com/articles/basic-writing-and-formatting-syntax/). You can see an example of how to display an image with a caption below.
+
+![Text shown if image does not load](Images/sine.png)<br/>
+*Figure 2: Sine wave calculated from 0 to 2π*
