@@ -156,7 +156,6 @@ for i in range(len(Thist)):
         tau_a = (R * (Thist[i] + 273.15)**2.0) / (Ea_a * dTdt)
         # Calculate new closure temperature
         Tc_a = Ea_a / (R * np.log(A_a * tau_a * D0a2_a)) - 273.15
-        #print Tc_a
         # Calculate new cooling age
         if Thist[i] > Tc_a:
             ratio = (Tc_ap - Thistp)/(Tc_ap - Thistp + Thist[i] - Tc_a)
@@ -169,7 +168,6 @@ for i in range(len(Thist)):
         tau_z = (R * (Thist[i] + 273.15)**2.0) / (Ea_z * dTdt)
         # Calculate new closure temperature
         Tc_z = Ea_z / (R * np.log(A_z * tau_z * D0a2_z)) - 273.15
-        #print Tc_z
         # Calculate new cooling age
         if Thist[i] > Tc_z:
             ratio = (Tc_zp - Thistp)/(Tc_zp - Thistp + Thist[i] - Tc_z)
