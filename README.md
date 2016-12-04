@@ -1,4 +1,4 @@
-# Exercise 13: Thermochronology, part I
+# Exercise 13: Quantitative thermochronology, part I
 This exercise is part 1 of the exercises on thermochronology.
 In this exercise you will run a time-dependent 1D thermal model, plot predicted geotherms, and predict thermochronometer ages for several thermochronometers.
 
