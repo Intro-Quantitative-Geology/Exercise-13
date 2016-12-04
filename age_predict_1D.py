@@ -1,30 +1,32 @@
-# age_predict_1D.py
-#
-# This code predicts thermochronometer cooling ages using a 1-D transient
-# advection-diffusion thermal model and Dodson's method for predicting mineral
-# closure temperatures.
-#
-# The surface temperature is assumed to be 0 deg. C and the final simulation
-# time in the model is 0 Ma.
-#
-# dwhipp - 27.04.16
+"""
+age_predict_1D.py
 
-# Import NumPy stuff
+This code predicts thermochronometer cooling ages using a 1-D transient
+advection-diffusion thermal model and Dodson's method for predicting mineral
+closure temperatures.
+
+The surface temperature is assumed to be 0 deg. C and the final simulation
+time in the model is 0 Ma.
+
+@author: Dave Whipp - 5.12.16
+"""
+
+# Import modules
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.special import erfc
 
 # Define function to calculate temperature as a function of depth, time, initial
 # thermal gradient, advection velocity and thermal diffusivity
-def transient_temp_1D(z,t,G,vz,kappa):
+def transientTemp1D(z,t,G,vz,kappa):
     # Calculate T separately for case where t = 0 to avoid divide-by-zero warnings
     if t == 0:
-        T = G * z
+        Temperature = G * z
     else:
-        T = G * (z + vz * t) + (G / 2.0) * ((z - vz * t) * np.exp(-(vz * z) / kappa) *\
+        Temperature = G * (z + vz * t) + (G / 2.0) * ((z - vz * t) * np.exp(-(vz * z) / kappa) *\
         erfc((z - vz * t) / (2.0 * np.sqrt(kappa * t))) - (z + vz * t) * \
         erfc((z + vz * t) / (2.0 * np.sqrt(kappa * t))))
-    return T
+    return Temperature
 
 #--- USER-DEFINED VARIABLES ---------------------------------------------------#
 
@@ -74,9 +76,9 @@ R = 8.314         # Universal gas constant
 #--- END USER-DEFINED VARIABLES -----------------------------------------------#
 
 # Set initial thermochronometer ages
-age_a = tmax
-age_z = tmax
-age_m = tmax
+ageA = tmax
+ageZ = tmax
+ageM = tmax
 
 # Convert units
 a_a = a_a / 1.0e6 / 1.0e3                                            # um -> km
@@ -159,7 +161,7 @@ for i in range(len(Thist)):
         # Calculate new cooling age
         if Thist[i] > Tc_a:
             ratio = (Tc_ap - Thistp)/(Tc_ap - Thistp + Thist[i] - Tc_a)
-            age_a = tMa[i] + (tMa[i-1] - tMa[i]) * ratio
+            ageA = tMa[i] + (tMa[i-1] - tMa[i]) * ratio
         Tc_ap = Tc_a
 
     # Calculate zircon (U-Th)/He closure temperature if requested
@@ -171,7 +173,7 @@ for i in range(len(Thist)):
         # Calculate new cooling age
         if Thist[i] > Tc_z:
             ratio = (Tc_zp - Thistp)/(Tc_zp - Thistp + Thist[i] - Tc_z)
-            age_z = tMa[i] + (tMa[i-1] - tMa[i]) * ratio
+            ageZ = tMa[i] + (tMa[i-1] - tMa[i]) * ratio
         Tc_zp = Tc_z
 
     # Calculate muscovite Ar/Ar closure temperature if requested
@@ -183,7 +185,7 @@ for i in range(len(Thist)):
         # Calculate new cooling age
         if Thist[i] > Tc_m:
             ratio = (Tc_mp - Thistp)/(Tc_mp - Thistp + Thist[i] - Tc_m)
-            age_m = tMa[i] + (tMa[i-1] - tMa[i]) * ratio
+            ageM = tMa[i] + (tMa[i-1] - tMa[i]) * ratio
         Tc_mp = Tc_m
 
     # Store previous temperature in thermal history
@@ -191,15 +193,15 @@ for i in range(len(Thist)):
 
 # Write apatite (U-Th)/He age to screen if requested
 if calc_AHe:
-    print("Apatite (U-Th)/He age: "+str(age_a))
+    print("Apatite (U-Th)/He age: "+str(ageA))
 
 # Write zircon (U-Th)/He age to screen if requested
 if calc_ZHe:
-    print("Zircon (U-Th)/He age: "+str(age_z))
+    print("Zircon (U-Th)/He age: "+str(ageZ))
 
 # Write muscovite Ar/Ar age to screen if requested
 if calc_MAr:
-    print("Muscovite Ar/Ar age: "+str(age_m))
+    print("Muscovite Ar/Ar age: "+str(ageM))
 
 # Plot particle depth-temperature history if requested
 if plot_Tzhist:
